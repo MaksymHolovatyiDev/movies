@@ -1,3 +1,51 @@
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;
+}
+
+.poster {
+  height: 300px;
+  width: 100%;
+  background-color: black;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.mainData {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.mainContainer {
+  width: 250px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.356);
+  border-radius: 8px;
+}
+
+.listContainer {
+  margin: 20px 0;
+  padding: 0 40px;
+
+  list-style: none;
+}
+
+.flexContainer {
+  display: flex;
+  gap: 25px;
+}
+
 .main {
   display: flex;
   flex-direction: column;
