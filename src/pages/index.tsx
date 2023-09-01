@@ -1,8 +1,32 @@
 import Head from 'next/head';
+import {useState, useEffect} from 'react';
+
 import Search from '@/components/Search/Search';
 import MoviesList from '@/components/MoviesList/MoviesList';
+import axios from 'axios';
 
 export default function Home() {
+  const [searchText, setSearchText] = useState('');
+
+  const [movies, setMovies] = useState<any>();
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/graphql', {
+        query: '{  getMovies {Title Year Type Poster} }',
+      })
+      .then(el => setMovies(el.data.data.getMovies));
+  }, []);
+
+  useEffect(() => {
+    console.log(movies);
+  }, [movies]);
+
+  useEffect(() => {
+    if (searchText.split(' ').join('')) {
+    }
+  }, [searchText]);
+
   return (
     <>
       <Head>
@@ -12,8 +36,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Search />
-        <MoviesList />
+        <Search setSearchText={setSearchText} searchText={searchText} />
+        <MoviesList movies={movies} />
       </main>
     </>
   );

@@ -1,47 +1,33 @@
-import {Modal, Box, Typography} from '@mui/material';
 import styles from '@/styles/Home.module.css';
+import {useState} from 'react';
+import MovieModal from '@/components/MovieModal/MovieModal';
+import {MovieBaseType} from '@/Types';
+import Image from 'next/image';
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+export default function MovieListItem({
+  Title,
+  Year,
+  Poster,
+  Type,
+}: MovieBaseType) {
+  const [open, setOpen] = useState(false);
 
-export default function MovieListItem() {
+  const handleClick = () => {
+    setOpen(prevState => !prevState);
+  };
+
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.poster}>Poster</div>
-      <div className={styles.title}>Title</div>
-      <div className={styles.flexContainer}>
-        <div className={styles.mainData}>Year</div>
-        <div className={styles.mainData}>Type</div>
+    <>
+      <div className={styles.mainContainer} onClick={handleClick}>
+        <img src={Poster} className={styles.poster} alt={Title} />
+        <p className={styles.title}>{Title}</p>
+        <div className={styles.flexContainer}>
+          <p className={styles.mainData}>{Year}</p>
+          <p className={styles.mainData}>{Type}</p>
+        </div>
       </div>
-    </div>
 
-    // <Modal
-    //   open={true}
-    //   onClose={()=>{}}
-    //   aria-labelledby="modal-modal-title"
-    //   aria-describedby="modal-modal-description">
-    //   <Box sx={style}>
-    //     <Typography id="modal-modal-title" variant="h6" component="h2">
-    //       Text in a modal
-    //     </Typography>
-    //     <Typography id="modal-modal-description" sx={{mt: 2}}>
-    //       Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-    //     </Typography>
-    //   </Box>
-    // </Modal>
+      <MovieModal open={open} toggle={handleClick} />
+    </>
   );
 }
-
-// Poster
-// "Title": "Avatar",
-//     "Year": "2009",
-//         Type
