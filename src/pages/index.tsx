@@ -4,27 +4,29 @@ import {useState, useEffect} from 'react';
 import Search from '@/components/Search/Search';
 import MoviesList from '@/components/MoviesList/MoviesList';
 import axios from 'axios';
+import {MovieBaseType} from '@/Types';
 
 export default function Home() {
   const [searchText, setSearchText] = useState('');
 
-  const [movies, setMovies] = useState<any>();
+  const [movies, setMovies] = useState<MovieBaseType[]>([]);
 
   useEffect(() => {
-    axios
-      .post('http://localhost:5000/graphql', {
-        query: '{  getMovies {Title Year Type Poster} }',
-      })
-      .then(el => setMovies(el.data.data.getMovies));
-  }, []);
+    if (searchText.split(' ').join(''))
+      axios
+        .post('http://localhost:5000/graphql', {
+          query:
+            'query getImages($imageTitle: String){ searchMoviesByName(Title: $imageTitle) {Title Year Type Poster} }',
+          variables: {imageTitle: searchText},
+        })
+        .then(el => setMovies(el.data.data.searchMoviesByName));
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
-
-  useEffect(() => {
-    if (searchText.split(' ').join('')) {
-    }
+    if (!searchText)
+      axios
+        .post('http://localhost:5000/graphql', {
+          query: '{  getMovies {Title Year Type Poster} }',
+        })
+        .then(el => setMovies(el.data.data.getMovies));
   }, [searchText]);
 
   return (

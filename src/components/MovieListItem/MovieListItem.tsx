@@ -2,7 +2,6 @@ import styles from '@/styles/Home.module.css';
 import {useState} from 'react';
 import MovieModal from '@/components/MovieModal/MovieModal';
 import {MovieBaseType} from '@/Types';
-import Image from 'next/image';
 
 export default function MovieListItem({
   Title,
