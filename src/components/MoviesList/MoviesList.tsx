@@ -18,18 +18,3 @@ export default function MoviesList({movies}: MoviesArr) {
     </ul>
   );
 }
-// Poster
-// "Title": "Avatar",
-//     "Year": "2009",
-//         Type
-
-//         "Released": "18 Dec 2009",
-//     "Runtime": "162 min",
-//     "Genre": "Action, Adventure, Fantasy",
-//     "Director": "James Cameron",
-//     Plot
-// Country
-// Awards
-// Metascore
-// imdbRating
-//              Images

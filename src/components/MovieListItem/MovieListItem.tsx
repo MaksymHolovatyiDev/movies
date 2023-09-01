@@ -26,7 +26,7 @@ export default function MovieListItem({
         </div>
       </div>
 
-      <MovieModal open={open} toggle={handleClick} />
+      <MovieModal open={open} toggle={handleClick} title={Title} />
     </>
   );
 }
