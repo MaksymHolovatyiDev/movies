@@ -1,6 +1,5 @@
 import {ModalTypes} from '@/Types';
 import {Modal, Box} from '@mui/material';
-import ModalData from '../ModalData/ModalData';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -20,7 +19,7 @@ const style = {
   overflow: 'auto',
 };
 
-export default function MovieModal({open, toggle, title}: ModalTypes) {
+export default function MovieModal({open, toggle, children}: ModalTypes) {
   return (
     <Modal
       open={open}
@@ -29,7 +28,7 @@ export default function MovieModal({open, toggle, title}: ModalTypes) {
       aria-describedby="modal-modal-description"
       sx={{overflow: 'auto'}}>
       <Box sx={style}>
-        <ModalData title={title} />
+        {children}
       </Box>
     </Modal>
   );

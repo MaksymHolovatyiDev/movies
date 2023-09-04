@@ -1,15 +1,15 @@
 export interface modalDataType {
-  title: string;
+  title?: string;
 }
 
-export interface ModalTypes extends modalDataType {
+export interface modalFieldType extends modalDataType {
+  toggle: (evt: any) => void;
+}
+
+export interface ModalTypes {
   open: boolean;
-  toggle: () => void;
-}
-
-export interface SearchType {
-  searchText: string;
-  setSearchText: (text: string) => void;
+  toggle: (evt: any) => void;
+  children: React.ReactNode;
 }
 
 export interface MovieBaseType {
@@ -17,10 +17,6 @@ export interface MovieBaseType {
   Year: string;
   Type: string;
   Poster: string;
-}
-
-export interface MoviesArr {
-  movies: MovieBaseType[];
 }
 
 export type MovieType = {
@@ -46,3 +42,10 @@ export type MovieType = {
   Response: string;
   Images: string[];
 };
+
+export interface ContextTypes {
+  movies: MovieBaseType[];
+  setMovies: (data: any) => void;
+  searchText: string;
+  setSearchText: (data: string) => void;
+}

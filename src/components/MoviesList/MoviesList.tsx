@@ -1,8 +1,11 @@
 import styles from '@/styles/Home.module.css';
 import MovieListItem from '../MovieListItem/MovieListItem';
-import {MovieBaseType, MoviesArr} from '@/Types';
+import {MovieBaseType} from '@/Types';
+import {useData} from '@/Providers/DataProvider';
 
-export default function MoviesList({movies}: MoviesArr) {
+export default function MoviesList() {
+  const {movies} = useData();
+
   return (
     <ul className={styles.listContainer}>
       {movies?.map((el: MovieBaseType) => (

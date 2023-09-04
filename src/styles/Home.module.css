@@ -37,12 +37,6 @@
   padding: 10px;
   border: 1px solid rgba(255, 0, 0, 0.356);
   border-radius: 8px;
-
-  cursor: pointer;
-}
-
-.mainContainer:hover {
-  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.538);
 }
 
 .listContainer {
@@ -80,4 +74,28 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+}
+
+.addBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+
+  background-color: greenyellow;
+}
+
+.addBtn:hover {
+  background-color: green;
+}
+
+.movieBtnsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

@@ -1,19 +1,13 @@
 import {useState, useEffect} from 'react';
-import axios from 'axios';
 import {MovieType, modalDataType} from '@/Types';
 import styles from '@/styles/Home.module.css';
+import {newReq} from '@/Req/Req';
 
 export default function ModalData({title}: modalDataType) {
   const [data, setData] = useState<MovieType>();
 
   useEffect(() => {
-    axios
-      .post('http://localhost:5000/graphql', {
-        query:
-          'query getImages($movieTitle: String){ getMovieByName(Title: $movieTitle) {Title Released Runtime Genre Director Writer Actors Plot Awards Metascore imdbRating Type Poster Images} }',
-        variables: {movieTitle: title},
-      })
-      .then(el => setData(el.data.data.getMovieByName));
+    newReq('getByName', setData, title);
   }, []);
 
   return (

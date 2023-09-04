@@ -1,8 +1,10 @@
 import TextField from '@mui/material/TextField';
 import styles from '@/styles/Home.module.css';
-import {SearchType} from '@/Types';
+import {useData} from '@/Providers/DataProvider';
 
-export default function Search({setSearchText, searchText}: SearchType) {
+export default function Search() {
+  const {searchText, setSearchText} = useData();
+
   const handleChange = (evt: any) => {
     setSearchText(evt.target.value);
   };
