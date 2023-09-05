@@ -14,10 +14,10 @@ export const modalMainFields = [
 export const movieFields = ['Title', ...modalMainFields, 'Poster', 'Images'];
 
 export enum methods {
-  getMovies = 'get',
-  getMovieByName = 'getByName',
-  searchMovies = 'search',
-  addMovie = 'add',
-  updateMovie = 'update',
-  deleteMovie = 'delete',
+  getMovies = 'getMovies',
+  getMovieByName = 'getMovieByName',
+  searchMovies = 'searchMoviesByName',
+  addMovie = 'addMovie',
+  updateMovie = 'updateMovie',
+  deleteMovie = 'deleteMovie',
 }

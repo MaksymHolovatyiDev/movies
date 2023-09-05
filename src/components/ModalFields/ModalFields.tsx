@@ -4,11 +4,22 @@ import {modalFieldType} from '@/Types';
 import {newReq} from '@/Req/Req';
 import {useData} from '@/Providers/DataProvider';
 import {methods, movieFields} from '@/environment/variables';
-import {useModalRender} from '@/hooks/hooks';
+import {useModalRender, useReqMutation} from '@/hooks/hooks';
 
 export default function ModalFields({title, toggle}: modalFieldType) {
   const {data} = useModalRender(title!);
   const {setMovies} = useData();
+  const {setData: addMovie} = useReqMutation(
+    methods.addMovie,
+    setMovies,
+    toggle,
+  );
+
+  const {setData: updateMovie} = useReqMutation(
+    methods.updateMovie,
+    setMovies,
+    toggle,
+  );
 
   const onSubmit = (evt: any) => {
     evt.preventDefault();
@@ -19,8 +30,8 @@ export default function ModalFields({title, toggle}: modalFieldType) {
     }
 
     data
-      ? newReq(methods.updateMovie, setMovies, {body, mainTitle: title}, toggle)
-      : newReq(methods.addMovie, setMovies, {body}, toggle);
+      ? updateMovie({variables: {body, mainTitle: title}})
+      : addMovie({variables: {body}});
   };
 
   return (

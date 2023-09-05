@@ -7,19 +7,24 @@ import {modalDataType} from '@/Types';
 import MovieModal from '../MovieModal/MovieModal';
 import ModalFields from '../ModalFields/ModalFields';
 import {useData} from '@/Providers/DataProvider';
-import {newReq} from '@/Req/Req';
 import {methods} from '@/environment/variables';
+import {useReqMutation} from '@/hooks/hooks';
 
 export default function MovieListItemBtns({title}: modalDataType) {
   const [open, setOpen] = useState(false);
   const {setMovies} = useData();
+  const {setData: deleteMovie} = useReqMutation(methods.deleteMovie, setMovies);
 
   const onEditClick = () => {
     setOpen(prevState => !prevState);
   };
 
   const onDeleteClick = () => {
-    newReq(methods.deleteMovie, setMovies, title);
+    deleteMovie({
+      variables: {
+        movieTitle: title,
+      },
+    });
   };
 
   return (
