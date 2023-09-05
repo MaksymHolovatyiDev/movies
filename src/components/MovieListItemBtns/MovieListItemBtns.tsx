@@ -8,6 +8,7 @@ import MovieModal from '../MovieModal/MovieModal';
 import ModalFields from '../ModalFields/ModalFields';
 import {useData} from '@/Providers/DataProvider';
 import {newReq} from '@/Req/Req';
+import {methods} from '@/environment/variables';
 
 export default function MovieListItemBtns({title}: modalDataType) {
   const [open, setOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function MovieListItemBtns({title}: modalDataType) {
   };
 
   const onDeleteClick = () => {
-    newReq('delete', setMovies, title);
+    newReq(methods.deleteMovie, setMovies, title);
   };
 
   return (

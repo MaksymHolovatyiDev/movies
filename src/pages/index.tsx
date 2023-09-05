@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import {useState, useEffect} from 'react';
-
 import Search from '@/components/Search/Search';
 import MoviesList from '@/components/MoviesList/MoviesList';
 import AddMovie from '@/components/AddMovie/AddMovie';

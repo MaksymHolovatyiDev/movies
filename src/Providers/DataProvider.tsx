@@ -1,6 +1,7 @@
 import {createContext, useContext, ReactNode, useState, useEffect} from 'react';
 import {ContextTypes, MovieBaseType} from '@/Types';
 import {newReq} from '@/Req/Req';
+import {methods} from '@/environment/variables';
 
 const DataContext = createContext<ContextTypes>({} as ContextTypes);
 
@@ -11,9 +12,10 @@ const DataProvider = ({children}: {children: ReactNode}) => {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    if (searchText.split(' ').join('')) newReq('search', setMovies, searchText);
+    if (searchText.split(' ').join(''))
+      newReq(methods.searchMovies, setMovies, searchText);
 
-    if (!searchText) newReq('get', setMovies);
+    if (!searchText) newReq(methods.getMovies, setMovies);
   }, [searchText]);
 
   const value = {

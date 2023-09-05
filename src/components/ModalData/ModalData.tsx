@@ -1,14 +1,10 @@
-import {useState, useEffect} from 'react';
-import {MovieType, modalDataType} from '@/Types';
+import {modalDataType} from '@/Types';
 import styles from '@/styles/Home.module.css';
-import {newReq} from '@/Req/Req';
+import {useModalRender} from '@/hooks/hooks';
+import {modalMainFields} from '@/environment/variables';
 
 export default function ModalData({title}: modalDataType) {
-  const [data, setData] = useState<MovieType>();
-
-  useEffect(() => {
-    newReq('getByName', setData, title);
-  }, []);
+  const {data} = useModalRender(title!);
 
   return (
     <>
@@ -19,40 +15,12 @@ export default function ModalData({title}: modalDataType) {
       />
       <p className={styles.title}>{data?.Title}</p>
       <div>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Released:</span>{' '}
-          {data?.Released}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Runtime:</span> {data?.Runtime}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Type:</span> {data?.Type}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Genre:</span> {data?.Genre}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Director:</span>{' '}
-          {data?.Director}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Writer:</span> {data?.Writer}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Plot:</span> {data?.Plot}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Awards:</span> {data?.Awards}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>Metascore:</span>{' '}
-          {data?.Metascore}
-        </p>
-        <p className={styles.dataText}>
-          <span className={styles.dataBoldText}>imdbRating:</span>{' '}
-          {data?.imdbRating}
-        </p>
+        {modalMainFields.map(el => (
+          <p className={styles.dataText}>
+            <span className={styles.dataBoldText}>{el}:</span>{' '}
+            {data ? data[el] : ''}
+          </p>
+        ))}
       </div>
       <div>
         <p className={styles.dataText}>
